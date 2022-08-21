@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import imageRickMorty from "./img/rick-morty.png";
+import "./App.css";
+import { useState } from "react";
+import Characters from "./components/Characters";
+import Redes from "./components/Redes";
+import UncontrolledCarousel from "./components/Carousel";
+import AnalogClock from "./components/AnalogClock";
 
 function App() {
+  const [characters, setCharacters] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const reqApi = async () => {
+    const api = await fetch("https://rickandmortyapi.com/api/character");
+    const characterApi = await api.json();
+    setCharacters(characterApi.results);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <UncontrolledCarousel />
+        <AnalogClock className="App-clock" />
+        <h1 className="title">Rick & Morty</h1>
+        {characters ? (
+          <Characters characters={characters} setCharacters={setCharacters} />
+        ) : (
+          <> 
+            <img src={imageRickMorty} alt="Rick & Morty" className="img-home" />
+            <button onClick={reqApi} className="btn-search">
+              Buscar Personajes
+            </button>
+          </>
+        )}
       </header>
+
+      <footer className="App-footer">
+        <button onClick={() => setShow(!show)} className="App-redes">
+          {show ? "Ocultar redes" : "Mostrar redes"}
+        </button>
+        <div className={show ? "show-element" : null}>{show && <Redes />}</div>
+      </footer>
     </div>
   );
 }
