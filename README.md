@@ -23,7 +23,11 @@ La app web se levantará en http://localhost:3000
 ## Temas cubiertos
 
 React Hook (useState)
+
 React Components
+
 Fetch API
+
 Bootstrap - para estilos y Carousel
+
 Analog-clock-react
