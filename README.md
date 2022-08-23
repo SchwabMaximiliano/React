@@ -30,8 +30,5 @@ Fetch API
 
 Bootstrap - para estilos y Carousel
 
-<<<<<<< HEAD
 Analog-Clock-react
-=======
-Analog-Clock-react
->>>>>>> a13fa18d27ee0acc2e24227bed5dad1fa54ed398
+
